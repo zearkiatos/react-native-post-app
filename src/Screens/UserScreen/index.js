@@ -6,8 +6,8 @@ import useUser from "../../hooks/useUser";
 const UserScreen = ({ navigation }) => {
   const { users, loading } = useUser();
 
-  const onPressHandler = ({ id }) => {
-    navigation.navigate("Posts", { userId: id });
+  const onPressHandler = ({ id, name }) => {
+    navigation.navigate("Posts", { userId: id, name });
   };
 
   return (

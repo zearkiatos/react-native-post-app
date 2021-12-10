@@ -1,10 +1,15 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-const DetailScreen = () => {
+const DetailScreen = ({ navigation }) => {
+  const body = navigation.getParam("body");
+  const title = navigation.getParam("title");
+  const userName = navigation.getParam("userName");
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>{userName}</Text>
+      <Text>{title}</Text>
+      <Text>{body}</Text>
     </View>
   );
 };

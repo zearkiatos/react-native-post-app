@@ -5,7 +5,11 @@ import usePost from "../../hooks/usePost";
 
 const PostScreen = ({ navigation }) => {
   const userId = navigation.getParam("userId");
+  const userName = navigation.getParam("name");
   const { posts, loading } = usePost(userId);
+  const onPressHandler = ({ title, body }) => {
+    navigation.navigate("Details", { title, body, userName });
+  };
   return (
     <View style={styles.container}>
       {loading ? (
@@ -16,7 +20,7 @@ const PostScreen = ({ navigation }) => {
           data={posts}
           keyExtractor={(post) => String(post.id)}
           renderItem={({ item }) => (
-            <ListItem title={item.title} />
+            <ListItem title={item.title} onPress={() => onPressHandler(item)} />
           )}
         />
       )}
