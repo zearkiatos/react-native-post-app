@@ -8,6 +8,7 @@ WORKDIR /app
 COPY . ./
 RUN npm install
 RUN npm install -g expo-cli
+RUN expo install
 
 EXPOSE 19006
 

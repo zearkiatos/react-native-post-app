@@ -1,27 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { StyleSheet, View, FlatList } from "react-native";
+import React from "react";
+import { StyleSheet, View, FlatList, Text } from "react-native";
 import ListItem from "../../components/ListItem";
+import useUser from "../../hooks/useUser";
 
-const users = [
-  {
-    id: 1,
-    name: "Leanne"
-  },
-  {
-    id: 2,
-    name: "Ervin"
-  }
-];
+const UserScreen = ({ navigation }) => {
+  const { users, loading } = useUser();
 
-const UserScreen = () => {
+  const onPressHandler = ({ id }) => {
+    navigation.navigate("Posts", { userId: id });
+  };
+
   return (
     <View style={styles.container}>
-      <FlatList
-        style={styles.list}
-        data={users}
-        keyExtractor={(user) => user.id}
-        renderItem={({ item }) => <ListItem title={item.name} />}
-      />
+      {loading ? (
+        <Text>Loading...</Text>
+      ) : (
+        <FlatList
+          style={styles.list}
+          data={users}
+          keyExtractor={(user) => String(user.id)}
+          renderItem={({ item }) => (
+            <ListItem title={item.name} onPress={() => onPressHandler(item)} />
+          )}
+        />
+      )}
     </View>
   );
 };

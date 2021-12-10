@@ -6,6 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: react-native-post-app
+    env_file:
+      - .env
     volumes: 
       - ".:/app"
     ports:
